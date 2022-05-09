@@ -4,7 +4,8 @@ class DataBaseConnexion {
     public $db;
     private $login;
     private $pass;
-//    private $connect;
+
+    protected $connection;
 
     public function __construct($db, $login, $pass) {
         $this -> login = $login;
@@ -13,6 +14,7 @@ class DataBaseConnexion {
     }
 
     public function DataBaseConnexion(){
+        $bdd = $this->connection;
         try {
             $bdd = new PDO(
                 'mysql:host=localhost;dbname='.$this -> db .';charset=utf8',
@@ -40,4 +42,4 @@ class DataBaseConnexion {
 
 $tst = new DataBaseConnexion('becode',
     'root', '');
-$tst -> count();
+//$tst -> count();

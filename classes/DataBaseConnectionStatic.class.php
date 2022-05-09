@@ -1,4 +1,5 @@
 <?php
+session_start();
 // static class connection
 class DataBaseConnectionStatic{
     private static $db = 'becode';
@@ -6,8 +7,7 @@ class DataBaseConnectionStatic{
     private static $pass = '';
     public static function DataBaseConnectionStatic(){
         try {
-            $bdd = new PDO('mysql:host=localhost;dbname=' .
-            DataBaseConnectionStatic::$db . ';charset=utf8',DataBaseConnectionStatic::$login, DataBaseConnectionStatic::$pass);
+            $bdd = new PDO('mysql:host=localhost;dbname=' . DataBaseConnectionStatic::$db . ';charset=utf8',DataBaseConnectionStatic::$login, DataBaseConnectionStatic::$pass);
             $bdd -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
             $bdd -> setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 //            echo "successfully co <br>";
