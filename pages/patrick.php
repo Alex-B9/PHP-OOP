@@ -1,7 +1,9 @@
 <?php
+//include_once 'classes/User.class.php';
 session_start();
 
-
+//echo $_SESSION['user']->
+var_dump($_SESSION['user']);
 ?>
 <!doctype html>
 <html lang="en">
@@ -14,7 +16,10 @@ session_start();
 </head>
 <body>
     <div class="container">
-        <h1>Welcome.</h1>
+        <h1>Welcome to Patrick.</h1>
     </div>
+<div class="nav">
+    <button><a href="../pages/PersonalPage.php">Personal page</a></button>
+</div>
 </body>
 </html>

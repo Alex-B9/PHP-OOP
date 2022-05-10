@@ -21,8 +21,8 @@ class DataBaseConnexion {
                     $this -> login,
                     $this -> pass
             );
-            $bdd -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
-            $bdd -> setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+//            $bdd -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+//            $bdd -> setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 //            echo "successfully co <br>";
             return $bdd;
         }catch (PDOException $e){

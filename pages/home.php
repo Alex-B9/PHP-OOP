@@ -1,17 +1,15 @@
 <?php
-session_start();
-require 'classes/DataBaseConnectionStatic.class.php';
-require 'classes/post.class.php';
+require 'classes/DataBaseConnection.class.php';
+//require 'classes/post.class.php';
 require 'classes/Form.class.php';
 require 'classes/HTML.class.php';
-require 'classes/Validator.class.php';
-require 'classes/Car.class.php';
+//require 'classes/Car.class.php';
+session_start();
 
 $form = new Form($_POST);
 $html = new html();
-$val = new Validator();
-$vroum = new car('audi', '125000', 'BE', '150000', '2015');
-$vroumun= new car('bmw', '750', 'DE', '60000', '2019');
+//$vroum = new car('audi', '125000', 'BE', '150000', '2015');
+//$vroumun= new car('bmw', '750', 'DE', '60000', '2019');
 
 //if (!isset($_SESSION['user']) ||(trim($_SESSION['user']) == '')){
 //    header('location:./index.php');
@@ -60,8 +58,8 @@ $vroumun= new car('bmw', '750', 'DE', '60000', '2019');
             </tr>
         </thead>
         <tbody>
-        <?= $vroum->display();?>
-        <?= $vroumun->display();?>
+<!--        --><?//= $vroum->display();?>
+<!--        --><?//= $vroumun->display();?>
         </tbody>
     </table>
 
