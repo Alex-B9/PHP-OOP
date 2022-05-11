@@ -1,24 +1,23 @@
 <?php
 require_once('DataBaseConnection.class.php');
-//session_start();
+session_start();
 
 class user {
-//    public $id;
     public $username;
+    public $password;
     public $email;
-    protected $password;
 //    public $status;
     public $bdd;
 
-    public function __construct($username, $email, $password){
-        $this->password = $password;
+    public function __construct($username, $password, $email){
         $this->username = $username;
+        $this->password = $password;
         $this->email = $email;
         $this->bdd = new DataBaseConnexion('becode', 'root', '');
     }
 
 
-    public function signup($username, $email, $password){
+    public function signup($username, $password, $email){
 
             if ($this->getUser($email) == false){
 
@@ -49,56 +48,60 @@ class user {
 
     public function check_login(){
 
-        $sql="SELECT * FROM accounts WHERE username= '$this->username' AND password = '$this->password'";
+        $sql="SELECT `username`,`password`, `email` FROM accounts WHERE username= '$this->username' AND password = '$this->password'";
         $query = $this->bdd->DataBaseConnexion()->prepare($sql);
         $query->execute();
         $result = $query->fetch();
 //        password_verify($_POST['password'],
-        if ($this->password == $result['password'] AND
-            $this->username == $result['username']) {
+        if($this->password == $result['password'] AND
+            $this->username == $result['username'])
+        {
             echo "successfully co";
-          header('location:../pages/patrick.php');
-        }else{
+            $_SESSION['username'] = htmlspecialchars($result['username']);
+            $_SESSION['password'] = htmlspecialchars($result['password']);
+            $_SESSION['email'] = $result['email'];
+          header('location:../pages/home.php');
+        }else
+        {
             echo "wrong password and/or username";
             header('location:../index.php');
         }
 
-//        return $query;
     }
+
+//    public function test(){
+//        return $this->email;
+//    }
 
     public function updateDB($dataName, $dataValue)
     {
-        $sql = "UPDATE `accounts` SET {$dataName} = '{$dataValue}'";
+        $sql = "UPDATE accounts SET {$dataName} = '{$dataValue}' WHERE email='$this->email'";
         $stmt = $this->bdd->DataBaseConnexion()->prepare($sql);
         $stmt->execute();
     }
 
-//    public function update($email,$){
-//        $sql = "UPDATE `accounts` SET `email`=$this->email, `username`=$this->username, `password`=$this->password WHERE `email`=$this->email";
-//        $stmt = $this->
+//    public function update($username, $password, $email){
+//        $sql = "UPDATE `accounts` SET `username`='$username', `password`='$password', `email`='$email' WHERE email='$this->email'";
+//        $stmt = $this->bdd->DataBaseConnexion()->prepare($sql);
+//        $stmt->execute(array(
+//            'username' => $username,
+//            'password'=>$password,
+//            'email' =>$email
+//        ));
 //    }
 
     public function logout(){
-        session_start();
+        session_unset();
         session_destroy();
-
+        echo 'logout success';
         header('location:../index.php');
     }
 
-    public function test(){
-        return 'coucou';
-    }
+    public function deleteAccount(){
+        $sql = "DELETE FROM accounts WHERE email = '$this->email'";
+        $stmt = $this->bdd->DataBaseConnexion()->prepare($sql);
+        $stmt->execute();
 
-//    public function login($user,$pass){
-//        if ($this->username == $user AND $this->password == $pass){
-//            return 'success log';
-//            header('location:pages/home.php');
-//        }elseif ($this->username == $user AND $this->password !== $pass){
-//            return 'error : wrong password';
-//        }elseif ($this->username !== $user AND $this->password == $pass){
-//            return 'error : wrong username';
-//        }else{
-//            return 'error, try again';
-//        }
-//    }
+        header('location:../index.php');
+    }
 }

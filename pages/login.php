@@ -6,9 +6,7 @@ session_start();
 $username = $_POST['username'];
 $email = $_POST['email'];
 $password = $_POST['password'];
-$user=new user($username, $email, $password);
+$user=new user($username, $password, $email);
 $_SESSION['user'] = $user;
-$_SESSION['user']->check_login();
-//$user->check_login();
 
-//$test = $_SESSION['user'];
+$user->check_login();

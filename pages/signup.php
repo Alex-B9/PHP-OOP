@@ -8,4 +8,4 @@ $email = htmlspecialchars($_POST['email']);
 
 $User = new user($username, $password, $email);
 
-$User->signup( $username,$email, $password);
+$User->signup( $username, $password, $email);
