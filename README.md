@@ -6,7 +6,7 @@ Creation of a login page and a member page in order to modify its login's in a d
 
 
 
-## Badges
+## Languages
 
 ![PHP](https://img.shields.io/badge/-PHP-%234F5D95)
 ![OOP](https://img.shields.io/badge/PHP-OOP-%234F5D95)
